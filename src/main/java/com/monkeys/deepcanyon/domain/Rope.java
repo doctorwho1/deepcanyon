@@ -8,6 +8,9 @@ import java.util.Set;
 public class Rope {
 
 	// invariant.
+	private final int westwardFirstPosition;
+	private final int eastwardFirstPosition = 0;
+
 	private final int length;
 	private Set<MonkeyRopePosition> positions = new HashSet<MonkeyRopePosition>();
 
@@ -15,6 +18,7 @@ public class Rope {
 		super();
 
 		this.length = length;
+		this.westwardFirstPosition = this.length - 1;
 	}
 
 	public int getLength() {
@@ -23,6 +27,19 @@ public class Rope {
 
 	public Collection<MonkeyRopePosition> getMonkeys() {
 		return Collections.unmodifiableCollection(this.positions);
+	}
+
+	public void addMonkey(Monkey monkey) {
+		switch (monkey.getCrossDirection()) {
+		case EASTWARD:
+			this.putMonkey(this.eastwardFirstPosition, monkey);
+			break;
+		case WESTWARD:
+			this.putMonkey(this.westwardFirstPosition, monkey);
+			break;
+		default:
+			break;
+		}
 	}
 
 	public void putMonkey(int position, Monkey monkey) {

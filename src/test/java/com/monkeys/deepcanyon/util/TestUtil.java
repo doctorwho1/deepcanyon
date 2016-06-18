@@ -19,6 +19,8 @@ public class TestUtil {
 	public static Rope createFullRopeOfWestwardMonkeys() {
 		return TestUtil.createFullRope(CrossDirection.WESTWARD);
 	}
+	
+	
 
 	private static Rope createFullRope(CrossDirection crossDirection) {
 		Rope rope = TestUtil.createEmptyRope();
