@@ -9,9 +9,10 @@ public class Monkey {
 
 	private MonkeyState state;
 
-	public Monkey() {
+	public Monkey(CrossDirection crossDirection) {
 		super();
 		this.state = MonkeyStates.WAITING_IN_QUEUE;
+		this.crossDirection = crossDirection;
 	}
 
 	public CrossDirection getCrossDirection() {
