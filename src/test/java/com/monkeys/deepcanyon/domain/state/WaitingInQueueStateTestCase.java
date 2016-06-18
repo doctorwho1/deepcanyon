@@ -13,18 +13,18 @@ public class WaitingInQueueStateTestCase {
 	@Test
 	public void handleEmptyRope() {
 		Monkey monkey = new Monkey(CrossDirection.EASTWARD);
-		MonkeyState newState = MonkeyStates.WAITING_IN_QUEUE.handle(monkey, TestUtil.createEmptyRope());
+		MonkeyState newState = MonkeyStateFactory.createWaitingInQueueState().handle(monkey, TestUtil.createEmptyRope());
 
-		Assert.assertEquals(MonkeyStates.TRYING_GET_ROPE, newState);
+		Assert.assertEquals(TryingGetRopeState.class, newState.getClass());
 	}
 
 	@Test
 	public void handleEastwardMonkeyFullRopeOfMonkeysInSameDirection() {
 		Monkey monkey = new Monkey(CrossDirection.EASTWARD);
 		Rope rope = TestUtil.createFullRopeOfEastwardMonkeys();
-		MonkeyState newState = MonkeyStates.WAITING_IN_QUEUE.handle(monkey, rope);
+		MonkeyState newState = MonkeyStateFactory.createWaitingInQueueState().handle(monkey, rope);
 
-		Assert.assertEquals(MonkeyStates.GIVING_WAY, newState);
+		Assert.assertEquals(GivingWayState.class, newState.getClass());
 
 	}
 
@@ -33,10 +33,9 @@ public class WaitingInQueueStateTestCase {
 
 		Monkey monkey = new Monkey(CrossDirection.EASTWARD);
 		Rope rope = TestUtil.createFullRopeOfWestwardMonkeys();
-		MonkeyState newState = MonkeyStates.WAITING_IN_QUEUE.handle(monkey, rope);
+		MonkeyState newState = MonkeyStateFactory.createWaitingInQueueState().handle(monkey, rope);
 
-		Assert.assertEquals(MonkeyStates.WAITING_IN_QUEUE, newState);
-		
+		Assert.assertEquals(WaitingInQueueState.class, newState.getClass());
 	}
 
 }

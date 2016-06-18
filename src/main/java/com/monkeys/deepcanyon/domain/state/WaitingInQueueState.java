@@ -8,13 +8,14 @@ public class WaitingInQueueState extends BaseMonkeyState {
 	public MonkeyState handle(Monkey monkey, Rope rope) {
 		if (this.isRopeFull(rope)) {
 			if (this.areSameDirectionMonkeys(monkey, rope.getMonkeys().iterator().next().getMonkey())) {
-				return MonkeyStates.GIVING_WAY;
+				return MonkeyStateFactory.createGivingWayState();
 			} else {
-				return MonkeyStates.WAITING_IN_QUEUE;
+				// Do nothing
+				return this;
 			}
 
 		} else {
-			return MonkeyStates.TRYING_GET_ROPE;
+			return MonkeyStateFactory.createTryingGetRopeState();
 		}
 
 	}

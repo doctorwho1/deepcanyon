@@ -9,7 +9,7 @@ public class TryingGetRopeState extends BaseMonkeyState {
 
 		rope.addMonkey(monkey);
 
-		return MonkeyStates.CROSSING_ROPE;
+		return MonkeyStateFactory.createCrossingRopeState();
 	}
 
 }

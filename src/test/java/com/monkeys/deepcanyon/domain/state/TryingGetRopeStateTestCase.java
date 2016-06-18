@@ -13,9 +13,9 @@ public class TryingGetRopeStateTestCase {
 	@Test
 	public void handleEmptyRopeEastWardDirection() {
 		Monkey monkey = new Monkey(CrossDirection.EASTWARD);
-		MonkeyState newState = MonkeyStates.TRYING_GET_ROPE.handle(monkey, TestUtil.createEmptyRope());
+		MonkeyState newState = MonkeyStateFactory.createTryingGetRopeState().handle(monkey, TestUtil.createEmptyRope());
 
-		Assert.assertEquals(MonkeyStates.CROSSING_ROPE, newState);
+		Assert.assertEquals(CrossingRopeState.class, newState.getClass());
 
 		// TODO: Comprobar que el mono ahora ocupa la primera posición de la
 		// cuerda.
@@ -24,9 +24,9 @@ public class TryingGetRopeStateTestCase {
 	@Test
 	public void handleEmptyRopeWestWardDirection() {
 		Monkey monkey = new Monkey(CrossDirection.WESTWARD);
-		MonkeyState newState = MonkeyStates.TRYING_GET_ROPE.handle(monkey, TestUtil.createEmptyRope());
+		MonkeyState newState = MonkeyStateFactory.createTryingGetRopeState().handle(monkey, TestUtil.createEmptyRope());
 
-		Assert.assertEquals(MonkeyStates.CROSSING_ROPE, newState);
+		Assert.assertEquals(CrossingRopeState.class, newState.getClass());
 
 		// TODO: Comprobar que el mono ahora ocupa la primera posición de la
 		// cuerda.
@@ -38,9 +38,9 @@ public class TryingGetRopeStateTestCase {
 		Rope rope = TestUtil.createEmptyRope();
 		rope.addMonkey(Monkey.builder().crossDirection(CrossDirection.EASTWARD).build());
 
-		MonkeyState newState = MonkeyStates.TRYING_GET_ROPE.handle(monkey, rope);
+		MonkeyState newState = MonkeyStateFactory.createTryingGetRopeState().handle(monkey, rope);
 
-		Assert.assertEquals(MonkeyStates.WAITING_IN_QUEUE, newState);
+		Assert.assertEquals(WaitingInQueueState.class, newState.getClass());
 
 		// TODO: Comprobar que el mono regresa a la primera posición de la cola.
 	}
@@ -51,9 +51,9 @@ public class TryingGetRopeStateTestCase {
 		Rope rope = TestUtil.createEmptyRope();
 		rope.addMonkey(Monkey.builder().crossDirection(CrossDirection.WESTWARD).build());
 
-		MonkeyState newState = MonkeyStates.TRYING_GET_ROPE.handle(monkey, rope);
+		MonkeyState newState = MonkeyStateFactory.createTryingGetRopeState().handle(monkey, rope);
 
-		Assert.assertEquals(MonkeyStates.WAITING_IN_QUEUE, newState);
+		Assert.assertEquals(WaitingInQueueState.class, newState.getClass());
 
 		// TODO: Comprobar que el mono regresa a la primera posición de la cola.
 	}
