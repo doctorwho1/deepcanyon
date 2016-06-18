@@ -7,9 +7,20 @@ public class TryingGetRopeState extends BaseMonkeyState {
 
 	public MonkeyState handle(Monkey monkey, Rope rope) {
 
-		rope.addMonkey(monkey);
-
-		return MonkeyStateFactory.createCrossingRopeState();
+		int currentMonkeyPosition;
+		switch (monkey.getCrossDirection()) {
+		case EASTWARD:
+			currentMonkeyPosition = rope.getEastwardFirstPosition();
+			break;
+		case WESTWARD:
+			currentMonkeyPosition = rope.getWestwardFirstPosition();
+			break;
+		default:
+			throw new IllegalStateException("Monkey should have a cross direction");
+		}
+		
+		rope.putMonkey(currentMonkeyPosition, monkey);
+		return MonkeyStateFactory.createCrossingRopeState(currentMonkeyPosition);
 	}
 
 }

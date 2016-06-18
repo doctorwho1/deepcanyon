@@ -28,7 +28,24 @@ public class Rope {
 	public Collection<MonkeyRopePosition> getMonkeys() {
 		return Collections.unmodifiableCollection(this.positions);
 	}
+	
+	public Monkey getMonkey(int position){
+		
+		for (MonkeyRopePosition each : this.positions){
+			if (each.getPosition() == position){
+				return each.getMonkey();
+			}
+		}
+		
+		return null;
+	}
 
+	/**
+	 * 
+	 * @param monkey
+	 * @return
+	 * @deprecated borrar este método.
+	 */
 	public Rope addMonkey(Monkey monkey) {
 		switch (monkey.getCrossDirection()) {
 		case EASTWARD:
@@ -38,7 +55,8 @@ public class Rope {
 			this.putMonkey(this.westwardFirstPosition, monkey);
 			break;
 		default:
-			break;
+			throw new IllegalStateException("Monkey should have a cross direction");
+	
 		}
 
 		return this;
