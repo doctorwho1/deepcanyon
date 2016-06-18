@@ -42,6 +42,14 @@ public class Rope {
 		}
 	}
 
+	public int getWestwardFirstPosition() {
+		return westwardFirstPosition;
+	}
+
+	public int getEastwardFirstPosition() {
+		return eastwardFirstPosition;
+	}
+
 	public void putMonkey(int position, Monkey monkey) {
 
 		this.positions.add(new MonkeyRopePosition(monkey, position));

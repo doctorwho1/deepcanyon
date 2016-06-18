@@ -6,8 +6,10 @@ import com.monkeys.deepcanyon.domain.Rope;
 public class TryingGetRopeState implements MonkeyState {
 
 	public MonkeyState handle(Monkey monkey, Rope rope) {
-		// TODO Auto-generated method stub
-		return null;
+
+		rope.addMonkey(monkey);
+
+		return MonkeyStates.CROSSING_ROPE;
 	}
 
 }
