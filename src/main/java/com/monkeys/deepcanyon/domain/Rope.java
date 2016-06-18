@@ -29,7 +29,7 @@ public class Rope {
 		return Collections.unmodifiableCollection(this.positions);
 	}
 
-	public void addMonkey(Monkey monkey) {
+	public Rope addMonkey(Monkey monkey) {
 		switch (monkey.getCrossDirection()) {
 		case EASTWARD:
 			this.putMonkey(this.eastwardFirstPosition, monkey);
@@ -40,6 +40,8 @@ public class Rope {
 		default:
 			break;
 		}
+
+		return this;
 	}
 
 	public int getWestwardFirstPosition() {

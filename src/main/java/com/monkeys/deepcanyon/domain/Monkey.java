@@ -5,7 +5,6 @@ import com.monkeys.deepcanyon.domain.state.MonkeyStates;
 
 import lombok.Builder;
 
-
 public class Monkey {
 
 	private CrossDirection crossDirection;
@@ -15,6 +14,11 @@ public class Monkey {
 	@Builder
 	public Monkey(CrossDirection crossDirection) {
 		super();
+
+		if (crossDirection == null) {
+			throw new IllegalArgumentException("crossDirection is required param");
+		}
+
 		this.state = MonkeyStates.WAITING_IN_QUEUE;
 		this.crossDirection = crossDirection;
 	}

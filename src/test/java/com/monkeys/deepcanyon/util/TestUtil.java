@@ -7,6 +7,15 @@ import com.monkeys.deepcanyon.domain.Rope;
 public class TestUtil {
 
 	private static final int DEFAULT_ROPE_LENGTH = 4;
+	
+	
+	public static Monkey createWestwardMonkey(){
+		return Monkey.builder().crossDirection(CrossDirection.WESTWARD).build();
+	}
+	
+	public static Monkey createEastwardMonkey(){
+		return Monkey.builder().crossDirection(CrossDirection.EASTWARD).build();
+	}
 
 	public static Rope createEmptyRope() {
 		return new Rope(TestUtil.DEFAULT_ROPE_LENGTH);
