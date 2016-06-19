@@ -24,14 +24,13 @@ public class WaitingInQueueState extends BaseMonkeyState {
 				Monkey firstMonkey = this.rope.getFirstMonkey();
 				if (this.areSameDirectionMonkeys(monkey, firstMonkey)) {
 					result = MonkeyFactory.createGivingWayState(this.monkey);
-				} else {
-					// Do nothing
-					return this;
 				}
 
 			} else {
-				result = MonkeyFactory.createTryingGetRopeState(this.monkey);
-				this.monkeyQueue.removeMonkey(monkey);
+				if (this.rope.getTryingGetRopeMonkey().compareAndSet(null, this.monkey)) {
+					result = MonkeyFactory.createTryingGetRopeState(this.monkey);
+					this.monkeyQueue.removeMonkey(monkey);
+				}
 			}
 		}
 

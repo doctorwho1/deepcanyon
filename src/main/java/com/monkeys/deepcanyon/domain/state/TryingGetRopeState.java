@@ -22,8 +22,9 @@ public class TryingGetRopeState extends BaseMonkeyState {
 
 		if (this.isElapsedOneSecond() && (firstMonkey == null || this.areSameDirectionMonkeys(monkey, firstMonkey))) {
 
-			// TODO: ¿Mover a la factoría la introducción del mono en la cuerda?
 			rope.addMonkey(monkey);
+			this.rope.getTryingGetRopeMonkey().set(null);
+			
 			result = MonkeyFactory.createCrossingRopeState(this.monkey);
 		}
 

@@ -5,7 +5,9 @@ import java.util.UUID;
 import com.monkeys.deepcanyon.domain.state.MonkeyState;
 
 import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Monkey {
 
 	private String monkeyName = UUID.randomUUID().toString();
@@ -24,6 +26,8 @@ public class Monkey {
 
 		this.crossDirection = crossDirection;
 		this.state = MonkeyFactory.createWaitingInQueueState(this);
+		
+		log.info("Monkey arrived: "+this);
 
 	}
 
