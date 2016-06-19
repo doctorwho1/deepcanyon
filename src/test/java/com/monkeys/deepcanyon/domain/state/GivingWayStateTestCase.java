@@ -1,20 +1,25 @@
 package com.monkeys.deepcanyon.domain.state;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.monkeys.deepcanyon.domain.Monkey;
-import com.monkeys.deepcanyon.domain.Rope;
 import com.monkeys.deepcanyon.util.TestUtil;
 
 public class GivingWayStateTestCase {
 
+	@Before
+	public void setUp() {
+		MonkeyFactory.getRopeInstance().reset();
+	}
+
 	@Test
 	public void handleWestwardMonkeyRopeStillContainMonkeysInSameDirection() {
 		Monkey monkey = TestUtil.createWestwardMonkey();
-		Rope rope = TestUtil.createEmptyRope().addMonkey(TestUtil.createWestwardMonkey());
+		TestUtil.createEmptyRope().addMonkey(TestUtil.createWestwardMonkey());
 
-		MonkeyState newMonkeyState = MonkeyStateFactory.createGivingWayState(monkey).handle(monkey, rope);
+		MonkeyState newMonkeyState = MonkeyFactory.createGivingWayState(monkey).handle();
 
 		Assert.assertEquals(GivingWayState.class, newMonkeyState.getClass());
 
@@ -23,9 +28,9 @@ public class GivingWayStateTestCase {
 	@Test
 	public void handleEastwardMonkeyRopeStillContainMonkeysInSameDirection() {
 		Monkey monkey = TestUtil.createEastwardMonkey();
-		Rope rope = TestUtil.createEmptyRope().addMonkey(TestUtil.createEastwardMonkey());
+		TestUtil.createEmptyRope().addMonkey(TestUtil.createEastwardMonkey());
 
-		MonkeyState newMonkeyState = MonkeyStateFactory.createGivingWayState(monkey).handle(monkey, rope);
+		MonkeyState newMonkeyState = MonkeyFactory.createGivingWayState(monkey).handle();
 
 		Assert.assertEquals(GivingWayState.class, newMonkeyState.getClass());
 
@@ -34,9 +39,9 @@ public class GivingWayStateTestCase {
 	@Test
 	public void handleWestwardMonkeyRopeEmpty() {
 		Monkey monkey = TestUtil.createWestwardMonkey();
-		Rope rope = TestUtil.createEmptyRope();
+		TestUtil.createEmptyRope();
 
-		MonkeyState newMonkeyState = MonkeyStateFactory.createGivingWayState(monkey).handle(monkey, rope);
+		MonkeyState newMonkeyState = MonkeyFactory.createGivingWayState(monkey).handle();
 
 		Assert.assertEquals(GivingWayState.class, newMonkeyState.getClass());
 
@@ -45,9 +50,9 @@ public class GivingWayStateTestCase {
 	@Test
 	public void handleEastwardMonkeyRopeEmpty() {
 		Monkey monkey = TestUtil.createEastwardMonkey();
-		Rope rope = TestUtil.createEmptyRope();
+		TestUtil.createEmptyRope();
 
-		MonkeyState newMonkeyState = MonkeyStateFactory.createGivingWayState(monkey).handle(monkey, rope);
+		MonkeyState newMonkeyState = MonkeyFactory.createGivingWayState(monkey).handle();
 
 		Assert.assertEquals(GivingWayState.class, newMonkeyState.getClass());
 
@@ -56,9 +61,9 @@ public class GivingWayStateTestCase {
 	@Test
 	public void handleWestwardMonkeyRopeStillContainMonkeysInOppositeDirection() {
 		Monkey monkey = TestUtil.createWestwardMonkey();
-		Rope rope = TestUtil.createEmptyRope().addMonkey(TestUtil.createEastwardMonkey());
+		TestUtil.createEmptyRope().addMonkey(TestUtil.createEastwardMonkey());
 
-		MonkeyState newState = MonkeyStateFactory.createGivingWayState(monkey).handle(monkey, rope);
+		MonkeyState newState = MonkeyFactory.createGivingWayState(monkey).handle();
 
 		Assert.assertEquals(WaitingInQueueState.class, newState.getClass());
 
@@ -67,9 +72,9 @@ public class GivingWayStateTestCase {
 	@Test
 	public void handleEastwardMonkeyRopeStillContainMonkeysInOppositeDirection() {
 		Monkey monkey = TestUtil.createEastwardMonkey();
-		Rope rope = TestUtil.createEmptyRope().addMonkey(TestUtil.createWestwardMonkey());
+		TestUtil.createEmptyRope().addMonkey(TestUtil.createWestwardMonkey());
 
-		MonkeyState newState = MonkeyStateFactory.createGivingWayState(monkey).handle(monkey, rope);
+		MonkeyState newState = MonkeyFactory.createGivingWayState(monkey).handle();
 
 		Assert.assertEquals(WaitingInQueueState.class, newState.getClass());
 

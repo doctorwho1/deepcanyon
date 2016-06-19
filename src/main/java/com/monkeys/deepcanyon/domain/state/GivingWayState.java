@@ -12,14 +12,14 @@ public class GivingWayState extends BaseMonkeyState {
 		super(monkey, rope);
 	}
 
-	public MonkeyState handle(Monkey monkey, Rope rope) {
+	public MonkeyState handle() {
 		Collection<MonkeyRopePosition> ropeMonkeys = rope.getMonkeys();
 
 		if (ropeMonkeys.isEmpty() || areSameDirectionMonkeys(monkey, ropeMonkeys.iterator().next().getMonkey())) {
 			// Do nothing
 			return this;
 		} else {
-			return MonkeyStateFactory.createWaitingInQueueState(monkey);
+			return MonkeyFactory.createWaitingInQueueState(monkey);
 		}
 	}
 

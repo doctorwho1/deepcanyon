@@ -9,7 +9,7 @@ public class CrossedRopeState extends BaseMonkeyState {
 		super(monkey, rope);
 	}
 
-	public MonkeyState handle(Monkey monkey, Rope rope) {
+	public MonkeyState handle() {
 		// TODO Auto-generated method stub
 		return null;
 	}

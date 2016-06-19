@@ -1,7 +1,7 @@
 package com.monkeys.deepcanyon.domain;
 
 import com.monkeys.deepcanyon.domain.state.MonkeyState;
-import com.monkeys.deepcanyon.domain.state.MonkeyStateFactory;
+import com.monkeys.deepcanyon.domain.state.MonkeyFactory;
 
 import lombok.Builder;
 
@@ -20,7 +20,7 @@ public class Monkey {
 		}
 
 		this.crossDirection = crossDirection;
-		this.state = MonkeyStateFactory.createWaitingInQueueState(this);
+		this.state = MonkeyFactory.createWaitingInQueueState(this);
 		
 	}
 

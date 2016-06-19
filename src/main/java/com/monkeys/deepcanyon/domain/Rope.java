@@ -28,15 +28,15 @@ public class Rope {
 	public Collection<MonkeyRopePosition> getMonkeys() {
 		return Collections.unmodifiableCollection(this.positions);
 	}
-	
-	public Monkey getMonkey(int position){
-		
-		for (MonkeyRopePosition each : this.positions){
-			if (each.getPosition() == position){
+
+	public Monkey getMonkey(int position) {
+
+		for (MonkeyRopePosition each : this.positions) {
+			if (each.getPosition() == position) {
 				return each.getMonkey();
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -56,7 +56,7 @@ public class Rope {
 			break;
 		default:
 			throw new IllegalStateException("Monkey should have a cross direction");
-	
+
 		}
 
 		return this;
@@ -75,6 +75,10 @@ public class Rope {
 		this.positions.add(new MonkeyRopePosition(monkey, position));
 
 		assert this.positions.size() <= this.length;
+	}
+
+	public void reset() {
+		this.positions.clear();
 	}
 
 }

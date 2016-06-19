@@ -9,7 +9,7 @@ public class TryingGetRopeState extends BaseMonkeyState {
 		super(monkey, rope);
 	}
 
-	public MonkeyState handle(Monkey monkey, Rope rope) {
+	public MonkeyState handle() {
 
 		if (rope.getMonkeys().size() == 0
 				|| this.areSameDirectionMonkeys(monkey, rope.getMonkeys().iterator().next().getMonkey())) {
@@ -28,10 +28,10 @@ public class TryingGetRopeState extends BaseMonkeyState {
 			}
 
 			rope.putMonkey(currentMonkeyPosition, monkey);
-			return MonkeyStateFactory.createCrossingRopeState(this.monkey, currentMonkeyPosition);
+			return MonkeyFactory.createCrossingRopeState(this.monkey, currentMonkeyPosition);
 		} else {
 			// Can not get rope, monkeys in opposite direction.
-			return MonkeyStateFactory.createWaitingInQueueState(monkey);
+			return MonkeyFactory.createWaitingInQueueState(monkey);
 		}
 	}
 
