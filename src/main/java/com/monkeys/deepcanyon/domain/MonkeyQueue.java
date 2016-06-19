@@ -29,15 +29,6 @@ public class MonkeyQueue {
 		return this.delegate.peek();
 	}
 	
-	/**
-	 * Retrieves and remove, the head of this queue, or returns null
-	 * if this queue is empty.
-	 * 
-	 * @return the head of this queue, or null if this queue is empty
-	 */
-	public Monkey pollMonkey() {
-		return this.delegate.poll();
-	}
 	
 	public boolean removeMonkey(Monkey monkey){
 		return this.delegate.remove(monkey);
