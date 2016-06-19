@@ -1,10 +1,7 @@
 package com.monkeys.deepcanyon.domain.state;
 
-import java.util.Collection;
-
 import com.monkeys.deepcanyon.domain.Monkey;
 import com.monkeys.deepcanyon.domain.MonkeyFactory;
-import com.monkeys.deepcanyon.domain.MonkeyRopePosition;
 import com.monkeys.deepcanyon.domain.Rope;
 
 public class GivingWayState extends BaseMonkeyState {
@@ -14,9 +11,9 @@ public class GivingWayState extends BaseMonkeyState {
 	}
 
 	public MonkeyState handle() {
-		Collection<MonkeyRopePosition> ropeMonkeys = rope.getMonkeys();
+		Monkey firstMonkey = this.rope.getFirstMonkey();
 
-		if (ropeMonkeys.isEmpty() || areSameDirectionMonkeys(monkey, ropeMonkeys.iterator().next().getMonkey())) {
+		if (firstMonkey == null || areSameDirectionMonkeys(monkey, firstMonkey)) {
 			// Do nothing
 			return this;
 		} else {

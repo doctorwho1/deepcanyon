@@ -21,7 +21,8 @@ public class WaitingInQueueState extends BaseMonkeyState {
 		if (this.isFirtsMonkeyOnQueue()) {
 
 			if (this.isRopeFull(rope)) {
-				if (this.areSameDirectionMonkeys(monkey, rope.getMonkeys().iterator().next().getMonkey())) {
+				Monkey firstMonkey = this.rope.getFirstMonkey();
+				if (this.areSameDirectionMonkeys(monkey, firstMonkey)) {
 					result = MonkeyFactory.createGivingWayState(this.monkey);
 				} else {
 					// Do nothing

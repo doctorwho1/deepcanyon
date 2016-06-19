@@ -11,25 +11,16 @@ public class TryingGetRopeState extends BaseMonkeyState {
 	}
 
 	public MonkeyState handle() {
+		
+		Monkey firstMonkey = this.rope.getFirstMonkey();
 
-		if (rope.getMonkeys().size() == 0
-				|| this.areSameDirectionMonkeys(monkey, rope.getMonkeys().iterator().next().getMonkey())) {
-			// FIXME: No estoy tratando correctamente los casos concurrentes.
+		if (firstMonkey == null
+				|| this.areSameDirectionMonkeys(monkey, firstMonkey)) {
 
-			int currentMonkeyPosition;
-			switch (monkey.getCrossDirection()) {
-			case EASTWARD:
-				currentMonkeyPosition = rope.getEastwardFirstPosition();
-				break;
-			case WESTWARD:
-				currentMonkeyPosition = rope.getWestwardFirstPosition();
-				break;
-			default:
-				throw new IllegalStateException("Monkey should have a cross direction");
-			}
 
-			rope.putMonkey(currentMonkeyPosition, monkey);
-			return MonkeyFactory.createCrossingRopeState(this.monkey, currentMonkeyPosition);
+			// TODO: ¿Mover a la factoría la introducción del mono en la cuerda?
+			rope.addMonkey(monkey);
+			return MonkeyFactory.createCrossingRopeState(this.monkey);
 		} else {
 			// Can not get rope, monkeys in opposite direction.
 			return MonkeyFactory.createWaitingInQueueState(monkey);

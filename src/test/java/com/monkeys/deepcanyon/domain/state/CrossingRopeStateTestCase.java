@@ -1,5 +1,8 @@
 package com.monkeys.deepcanyon.domain.state;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeUtils;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,65 +19,29 @@ public class CrossingRopeStateTestCase {
 		MonkeyFactory.reset();
 	}
 
+	@After
+	public void tearDown() {
+		DateTimeUtils.setCurrentMillisSystem();
+	}
+
 	@Test
 	public void handleCrossRopeEastWardDirection() {
 		Monkey monkey = TestUtil.createEastwardMonkey();
 		Rope rope = TestUtil.createEmptyRope();
+		DateTime currentTime = DateTime.now();
 
-		int firstPosition = rope.getEastwardFirstPosition();
-		rope.putMonkey(firstPosition, monkey);
+		rope.addMonkey(monkey);
 
-		MonkeyState monkeyState = MonkeyFactory.createCrossingRopeState(monkey, firstPosition);
+		DateTimeUtils.setCurrentMillisFixed(currentTime.getMillis());
+		MonkeyState monkeyState = MonkeyFactory.createCrossingRopeState(monkey);
 
-		for (int i = 0; i < rope.getLength(); i++) {
+		for (int i = 1; i <= rope.getLength(); i++) {
 			Assert.assertEquals(CrossingRopeState.class, monkeyState.getClass());
-			Assert.assertEquals(firstPosition + i, ((CrossingRopeState) monkeyState).getCurrentRopePosition());
+			DateTimeUtils.setCurrentMillisFixed(currentTime.plusSeconds(i).getMillis());
 			monkeyState = monkeyState.handle();
-
 		}
 
 		Assert.assertEquals(CrossedRopeState.class, monkeyState.getClass());
-	}
-
-	@Test
-	public void handleCrossRopeWestWardDirection() {
-		Monkey monkey = TestUtil.createWestwardMonkey();
-		Rope rope = TestUtil.createEmptyRope();
-
-		int firstPosition = rope.getWestwardFirstPosition();
-		rope.putMonkey(firstPosition, monkey);
-
-		MonkeyState monkeyState = MonkeyFactory.createCrossingRopeState(monkey, firstPosition);
-
-		for (int i = 0; i < rope.getLength(); i++) {
-			Assert.assertEquals(CrossingRopeState.class, monkeyState.getClass());
-			Assert.assertEquals(firstPosition - i, ((CrossingRopeState) monkeyState).getCurrentRopePosition());
-			monkeyState = monkeyState.handle();
-
-		}
-
-		Assert.assertEquals(CrossedRopeState.class, monkeyState.getClass());
-	}
-
-	@Test
-	public void handleCrossRopeEastWardDirectionCanNotAdvanceMonkeyInNextPosition() {
-		Monkey monkey = TestUtil.createEastwardMonkey();
-		Monkey frontMonkey = TestUtil.createEastwardMonkey();
-		Rope rope = TestUtil.createEmptyRope();
-
-		int firstPosition = rope.getEastwardFirstPosition();
-		rope.putMonkey(firstPosition, monkey);
-		rope.putMonkey(firstPosition + 1, frontMonkey);
-
-		MonkeyState monkeyState = MonkeyFactory.createCrossingRopeState(monkey, firstPosition);
-
-		Assert.assertEquals(firstPosition, ((CrossingRopeState) monkeyState).getCurrentRopePosition());
-		monkeyState = monkeyState.handle();
-
-		// Not advance any position. Is in same position
-		Assert.assertEquals(CrossingRopeState.class, monkeyState.getClass());
-		Assert.assertEquals(firstPosition, ((CrossingRopeState) monkeyState).getCurrentRopePosition());
-
 	}
 
 }

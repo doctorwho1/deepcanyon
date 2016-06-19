@@ -20,7 +20,14 @@ public class Monkey {
 
 		this.crossDirection = crossDirection;
 		this.state = MonkeyFactory.createWaitingInQueueState(this);
-		
+
+	}
+
+	/**
+	 * The monkey thinks and executes the next action.
+	 */
+	public void think() {
+		this.state = this.state.handle();
 	}
 
 	public CrossDirection getCrossDirection() {

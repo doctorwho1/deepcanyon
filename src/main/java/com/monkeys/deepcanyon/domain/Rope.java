@@ -2,17 +2,16 @@ package com.monkeys.deepcanyon.domain;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Rope {
 
-	// invariant.
 	private final int westwardFirstPosition;
 	private final int eastwardFirstPosition = 0;
 
 	private final int length;
-	private Set<MonkeyRopePosition> positions = new HashSet<MonkeyRopePosition>();
+
+	private ConcurrentLinkedQueue<Monkey> monkeys = new ConcurrentLinkedQueue<Monkey>();
 
 	public Rope(int length) {
 		super();
@@ -25,41 +24,23 @@ public class Rope {
 		return length;
 	}
 
-	public Collection<MonkeyRopePosition> getMonkeys() {
-		return Collections.unmodifiableCollection(this.positions);
+	public Collection<Monkey> getMonkeys() {
+		return Collections.unmodifiableCollection(this.monkeys);
 	}
 
-	public Monkey getMonkey(int position) {
-
-		for (MonkeyRopePosition each : this.positions) {
-			if (each.getPosition() == position) {
-				return each.getMonkey();
-			}
-		}
-
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param monkey
-	 * @return
-	 * @deprecated borrar este método.
-	 */
 	public Rope addMonkey(Monkey monkey) {
-		switch (monkey.getCrossDirection()) {
-		case EASTWARD:
-			this.putMonkey(this.eastwardFirstPosition, monkey);
-			break;
-		case WESTWARD:
-			this.putMonkey(this.westwardFirstPosition, monkey);
-			break;
-		default:
-			throw new IllegalStateException("Monkey should have a cross direction");
 
-		}
+		this.monkeys.add(monkey);
 
 		return this;
+	}
+
+	public void removeMonkey(Monkey monkey) {
+		this.monkeys.remove(monkey);
+	}
+	
+	public Monkey getFirstMonkey(){
+		return this.monkeys.peek();
 	}
 
 	public int getWestwardFirstPosition() {
@@ -70,15 +51,8 @@ public class Rope {
 		return eastwardFirstPosition;
 	}
 
-	public void putMonkey(int position, Monkey monkey) {
-
-		this.positions.add(new MonkeyRopePosition(monkey, position));
-
-		assert this.positions.size() <= this.length;
-	}
-
 	public void reset() {
-		this.positions.clear();
+		this.monkeys.clear();
 	}
 
 }

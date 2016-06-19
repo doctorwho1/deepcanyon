@@ -15,9 +15,8 @@ public final class MonkeyFactory {
 	private static final MonkeyQueue eastwardQueue = new MonkeyQueue(CrossDirection.EASTWARD);
 
 	private static final MonkeyQueue westwardQueue = new MonkeyQueue(CrossDirection.WESTWARD);
-	
-	
-	public static final void reset(){
+
+	public static final void reset() {
 		MonkeyFactory.ROPE.reset();
 		MonkeyFactory.eastwardQueue.clear();
 		MonkeyFactory.westwardQueue.clear();
@@ -34,8 +33,8 @@ public final class MonkeyFactory {
 		}
 	}
 
-	public static final CrossingRopeState createCrossingRopeState(Monkey monkey, int currentRopePosition) {
-		return new CrossingRopeState(monkey, MonkeyFactory.getRopeInstance(), currentRopePosition);
+	public static final CrossingRopeState createCrossingRopeState(Monkey monkey) {
+		return new CrossingRopeState(monkey, MonkeyFactory.getRopeInstance());
 	}
 
 	public static final GivingWayState createGivingWayState(Monkey monkey) {

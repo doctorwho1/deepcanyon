@@ -1,5 +1,8 @@
 package com.monkeys.deepcanyon.util;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeUtils;
+
 import com.monkeys.deepcanyon.domain.CrossDirection;
 import com.monkeys.deepcanyon.domain.Monkey;
 import com.monkeys.deepcanyon.domain.MonkeyFactory;
@@ -30,10 +33,16 @@ public class TestUtil {
 
 	private static Rope createFullRope(CrossDirection crossDirection) {
 		Rope rope = TestUtil.createEmptyRope();
+		DateTime currentTime = DateTime.now();
 
-		for (int i = 0; i < rope.getLength(); i++) {
-			rope.putMonkey(i, new Monkey(crossDirection));
+		for (int i = rope.getLength() - 1; i >= 0; i--) {
+
+			DateTimeUtils.setCurrentMillisFixed(currentTime.minusSeconds(i).getMillis());
+			rope.addMonkey(new Monkey(crossDirection));
+
 		}
+
+		DateTimeUtils.setCurrentMillisSystem();
 
 		return rope;
 	}
