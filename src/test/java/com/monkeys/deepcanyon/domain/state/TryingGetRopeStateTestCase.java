@@ -29,8 +29,7 @@ public class TryingGetRopeStateTestCase extends BaseStateTestCase {
 
 		Assert.assertEquals(CrossingRopeState.class, monkeyState.handle().getClass());
 
-		// TODO: Comprobar que el mono ahora ocupa la primera posición de la
-		// cuerda.
+		Assert.assertEquals(monkey, MonkeyFactory.getRopeInstance().getFirstMonkey());
 	}
 
 	@Test
@@ -42,8 +41,7 @@ public class TryingGetRopeStateTestCase extends BaseStateTestCase {
 
 		Assert.assertEquals(CrossingRopeState.class, monkeyState.handle().getClass());
 
-		// TODO: Comprobar que el mono ahora ocupa la primera posición de la
-		// cuerda.
+		Assert.assertEquals(monkey, MonkeyFactory.getRopeInstance().getFirstMonkey());
 	}
 
 	@Test

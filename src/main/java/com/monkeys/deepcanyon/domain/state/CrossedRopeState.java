@@ -10,7 +10,7 @@ public class CrossedRopeState extends BaseMonkeyState {
 	}
 
 	public MonkeyState handle() {
-		// TODO Auto-generated method stub
+		// TODO destruir el mono.
 		return null;
 	}
 
