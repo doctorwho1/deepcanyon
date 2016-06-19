@@ -15,7 +15,7 @@ public class GivingWayState extends BaseMonkeyState {
 			// Do nothing
 			return this;
 		} else {
-			return MonkeyStateFactory.createWaitingInQueueState();
+			return MonkeyStateFactory.createWaitingInQueueState(monkey);
 		}
 	}
 

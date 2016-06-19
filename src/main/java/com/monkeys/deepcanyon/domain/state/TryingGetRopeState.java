@@ -27,7 +27,7 @@ public class TryingGetRopeState extends BaseMonkeyState {
 			return MonkeyStateFactory.createCrossingRopeState(currentMonkeyPosition);
 		} else {
 			// Can not get rope, monkeys in opposite direction.
-			return MonkeyStateFactory.createWaitingInQueueState();
+			return MonkeyStateFactory.createWaitingInQueueState(monkey);
 		}
 	}
 

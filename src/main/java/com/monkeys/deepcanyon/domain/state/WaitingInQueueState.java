@@ -1,9 +1,17 @@
 package com.monkeys.deepcanyon.domain.state;
 
 import com.monkeys.deepcanyon.domain.Monkey;
+import com.monkeys.deepcanyon.domain.MonkeyQueue;
 import com.monkeys.deepcanyon.domain.Rope;
 
 public class WaitingInQueueState extends BaseMonkeyState {
+
+	private MonkeyQueue monkeyQueue;
+
+	public WaitingInQueueState(MonkeyQueue monkeyQueue) {
+		super();
+		this.monkeyQueue = monkeyQueue;
+	}
 
 	public MonkeyState handle(Monkey monkey, Rope rope) {
 		if (this.isRopeFull(rope)) {

@@ -19,8 +19,9 @@ public class Monkey {
 			throw new IllegalArgumentException("crossDirection is required param");
 		}
 
-		this.state = MonkeyStateFactory.createWaitingInQueueState();
 		this.crossDirection = crossDirection;
+		this.state = MonkeyStateFactory.createWaitingInQueueState(this);
+		
 	}
 
 	public CrossDirection getCrossDirection() {
