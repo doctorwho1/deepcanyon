@@ -15,6 +15,13 @@ public final class MonkeyFactory {
 	private static final MonkeyQueue eastwardQueue = new MonkeyQueue(CrossDirection.EASTWARD);
 
 	private static final MonkeyQueue westwardQueue = new MonkeyQueue(CrossDirection.WESTWARD);
+	
+	
+	public static final void reset(){
+		MonkeyFactory.ROPE.reset();
+		MonkeyFactory.eastwardQueue.clear();
+		MonkeyFactory.westwardQueue.clear();
+	}
 
 	public static final WaitingInQueueState createWaitingInQueueState(Monkey monkey) {
 		switch (monkey.getCrossDirection()) {
@@ -45,6 +52,14 @@ public final class MonkeyFactory {
 
 	public static final Rope getRopeInstance() {
 		return MonkeyFactory.ROPE;
+	}
+
+	public static MonkeyQueue getEastwardqueue() {
+		return eastwardQueue;
+	}
+
+	public static MonkeyQueue getWestwardqueue() {
+		return westwardQueue;
 	}
 
 	private static final WaitingInQueueState createWaitingInEastwardQueueState(Monkey monkey) {

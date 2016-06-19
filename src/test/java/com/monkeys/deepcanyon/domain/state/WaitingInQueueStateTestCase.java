@@ -13,7 +13,7 @@ public class WaitingInQueueStateTestCase {
 
 	@Before
 	public void setUp() {
-		MonkeyFactory.getRopeInstance().reset();
+		MonkeyFactory.reset();
 	}
 
 	@Test
@@ -42,6 +42,32 @@ public class WaitingInQueueStateTestCase {
 		MonkeyState newState = MonkeyFactory.createWaitingInQueueState(monkey).handle();
 
 		Assert.assertEquals(WaitingInQueueState.class, newState.getClass());
+	}
+	
+	@Test
+	public void monkeyCanNotChangeStateBecauseIsNotFirstMonkeyInQueue(){
+		Monkey firtMonkey = new Monkey(CrossDirection.EASTWARD);
+		Monkey secondMonkey = new Monkey(CrossDirection.EASTWARD);
+		
+		MonkeyFactory.getEastwardqueue().addMonkey(firtMonkey);
+		MonkeyFactory.getEastwardqueue().addMonkey(secondMonkey);
+		
+		MonkeyState secondMonkeyState = MonkeyFactory.createWaitingInQueueState(secondMonkey);
+		
+		Assert.assertEquals(WaitingInQueueState.class, secondMonkeyState.getClass());
+		
+		// State not change.
+		Assert.assertEquals(secondMonkeyState, secondMonkeyState.handle());
+		
+		// Now first monkey advance.
+		MonkeyState firstMonkeyState = MonkeyFactory.createWaitingInQueueState(secondMonkey);
+		Assert.assertEquals(TryingGetRopeState.class, firstMonkeyState.handle());
+		
+		// Now second monkey can advance
+		Assert.assertEquals(TryingGetRopeState.class, secondMonkeyState.handle());
+		
+		
+		
 	}
 
 }

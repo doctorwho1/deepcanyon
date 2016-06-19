@@ -14,7 +14,7 @@ public class TryingGetRopeStateTestCase {
 
 	@Before
 	public void setUp() {
-		MonkeyFactory.getRopeInstance().reset();
+		MonkeyFactory.reset();
 	}
 
 	@Test

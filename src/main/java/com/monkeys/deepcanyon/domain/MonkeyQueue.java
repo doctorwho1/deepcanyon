@@ -38,6 +38,10 @@ public class MonkeyQueue {
 	public Monkey pollMonkey() {
 		return this.delegate.poll();
 	}
+	
+	public void clear() {
+		this.delegate.clear();
+	}
 
 	public CrossDirection getCrossDirection() {
 		return crossDirection;

@@ -12,7 +12,7 @@ public class GivingWayStateTestCase {
 
 	@Before
 	public void setUp() {
-		MonkeyFactory.getRopeInstance().reset();
+		MonkeyFactory.reset();
 	}
 
 	@Test

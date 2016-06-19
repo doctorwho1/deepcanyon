@@ -13,7 +13,7 @@ public class CrossingRopeStateTestCase {
 
 	@Before
 	public void setUp() {
-		MonkeyFactory.getRopeInstance().reset();
+		MonkeyFactory.reset();
 	}
 
 	@Test
