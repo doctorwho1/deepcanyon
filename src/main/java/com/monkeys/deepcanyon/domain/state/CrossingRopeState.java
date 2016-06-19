@@ -6,17 +6,20 @@ import com.monkeys.deepcanyon.domain.Rope;
 public class CrossingRopeState extends BaseMonkeyState {
 
 	public int currentRopePosition;
+	
+	
 
-	public CrossingRopeState(int currentRopePosition) {
-		super();
+	public CrossingRopeState(Monkey monkey, Rope rope, int currentRopePosition) {
+		super(monkey, rope);
 		this.currentRopePosition = currentRopePosition;
 	}
+
 
 	public MonkeyState handle(Monkey monkey, Rope rope) {
 
 		if (this.isNextPositionEndOfRope(monkey, rope)) {
 			rope.putMonkey(this.currentRopePosition, null);
-			return MonkeyStateFactory.createCrossedRopeState();
+			return MonkeyStateFactory.createCrossedRopeState(this.monkey);
 
 		} else if (this.isNextPositionAvailable(monkey, rope)) {
 			// TODO: El mono por un instante está en 2 sitios a la vez.

@@ -3,46 +3,55 @@ package com.monkeys.deepcanyon.domain.state;
 import com.monkeys.deepcanyon.domain.CrossDirection;
 import com.monkeys.deepcanyon.domain.Monkey;
 import com.monkeys.deepcanyon.domain.MonkeyQueue;
+import com.monkeys.deepcanyon.domain.Rope;
 
 public final class MonkeyStateFactory {
+
+	private static final int DEFAULT_ROPE_LENGTH = 4;
+
+	private static final Rope ROPE = new Rope(MonkeyStateFactory.DEFAULT_ROPE_LENGTH);
 
 	private static final MonkeyQueue eastwardQueue = new MonkeyQueue(CrossDirection.EASTWARD);
 
 	private static final MonkeyQueue westwardQueue = new MonkeyQueue(CrossDirection.WESTWARD);
 
-	public final static WaitingInQueueState createWaitingInQueueState(Monkey monkey) {
+	public static final WaitingInQueueState createWaitingInQueueState(Monkey monkey) {
 		switch (monkey.getCrossDirection()) {
 		case EASTWARD:
-			return MonkeyStateFactory.createWaitingInEastwardQueueState();
+			return MonkeyStateFactory.createWaitingInEastwardQueueState(monkey);
 		case WESTWARD:
-			return MonkeyStateFactory.createWaitingInWestwardQueueState();
+			return MonkeyStateFactory.createWaitingInWestwardQueueState(monkey);
 		default:
 			throw new IllegalStateException("Monkey should have a cross direction");
 		}
 	}
 
-	private final static WaitingInQueueState createWaitingInEastwardQueueState() {
-		return new WaitingInQueueState(MonkeyStateFactory.eastwardQueue);
+	public static final CrossingRopeState createCrossingRopeState(Monkey monkey, int currentRopePosition) {
+		return new CrossingRopeState(monkey, MonkeyStateFactory.getRopeInstance(), currentRopePosition);
 	}
 
-	private final static WaitingInQueueState createWaitingInWestwardQueueState() {
-		return new WaitingInQueueState(MonkeyStateFactory.westwardQueue);
+	public static final GivingWayState createGivingWayState(Monkey monkey) {
+		return new GivingWayState(monkey, MonkeyStateFactory.getRopeInstance());
 	}
 
-	public final static CrossingRopeState createCrossingRopeState(int currentRopePosition) {
-		return new CrossingRopeState(currentRopePosition);
+	public static final TryingGetRopeState createTryingGetRopeState(Monkey monkey) {
+		return new TryingGetRopeState(monkey, MonkeyStateFactory.getRopeInstance());
 	}
 
-	public final static GivingWayState createGivingWayState() {
-		return new GivingWayState();
+	public static final CrossedRopeState createCrossedRopeState(Monkey monkey) {
+		return new CrossedRopeState(monkey, MonkeyStateFactory.getRopeInstance());
 	}
 
-	public final static TryingGetRopeState createTryingGetRopeState() {
-		return new TryingGetRopeState();
+	private static final WaitingInQueueState createWaitingInEastwardQueueState(Monkey monkey) {
+		return new WaitingInQueueState(monkey, MonkeyStateFactory.getRopeInstance(), MonkeyStateFactory.eastwardQueue);
 	}
 
-	public final static CrossedRopeState createCrossedRopeState() {
-		return new CrossedRopeState();
+	private static final WaitingInQueueState createWaitingInWestwardQueueState(Monkey monkey) {
+		return new WaitingInQueueState(monkey, MonkeyStateFactory.getRopeInstance(), MonkeyStateFactory.westwardQueue);
+	}
+
+	private static final Rope getRopeInstance() {
+		return MonkeyStateFactory.ROPE;
 	}
 
 }

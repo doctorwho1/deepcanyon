@@ -14,7 +14,7 @@ public class GivingWayStateTestCase {
 		Monkey monkey = TestUtil.createWestwardMonkey();
 		Rope rope = TestUtil.createEmptyRope().addMonkey(TestUtil.createWestwardMonkey());
 
-		MonkeyState newMonkeyState = MonkeyStateFactory.createGivingWayState().handle(monkey, rope);
+		MonkeyState newMonkeyState = MonkeyStateFactory.createGivingWayState(monkey).handle(monkey, rope);
 
 		Assert.assertEquals(GivingWayState.class, newMonkeyState.getClass());
 
@@ -25,7 +25,7 @@ public class GivingWayStateTestCase {
 		Monkey monkey = TestUtil.createEastwardMonkey();
 		Rope rope = TestUtil.createEmptyRope().addMonkey(TestUtil.createEastwardMonkey());
 
-		MonkeyState newMonkeyState = MonkeyStateFactory.createGivingWayState().handle(monkey, rope);
+		MonkeyState newMonkeyState = MonkeyStateFactory.createGivingWayState(monkey).handle(monkey, rope);
 
 		Assert.assertEquals(GivingWayState.class, newMonkeyState.getClass());
 
@@ -36,7 +36,7 @@ public class GivingWayStateTestCase {
 		Monkey monkey = TestUtil.createWestwardMonkey();
 		Rope rope = TestUtil.createEmptyRope();
 
-		MonkeyState newMonkeyState = MonkeyStateFactory.createGivingWayState().handle(monkey, rope);
+		MonkeyState newMonkeyState = MonkeyStateFactory.createGivingWayState(monkey).handle(monkey, rope);
 
 		Assert.assertEquals(GivingWayState.class, newMonkeyState.getClass());
 
@@ -47,7 +47,7 @@ public class GivingWayStateTestCase {
 		Monkey monkey = TestUtil.createEastwardMonkey();
 		Rope rope = TestUtil.createEmptyRope();
 
-		MonkeyState newMonkeyState = MonkeyStateFactory.createGivingWayState().handle(monkey, rope);
+		MonkeyState newMonkeyState = MonkeyStateFactory.createGivingWayState(monkey).handle(monkey, rope);
 
 		Assert.assertEquals(GivingWayState.class, newMonkeyState.getClass());
 
@@ -58,7 +58,7 @@ public class GivingWayStateTestCase {
 		Monkey monkey = TestUtil.createWestwardMonkey();
 		Rope rope = TestUtil.createEmptyRope().addMonkey(TestUtil.createEastwardMonkey());
 
-		MonkeyState newState = MonkeyStateFactory.createGivingWayState().handle(monkey, rope);
+		MonkeyState newState = MonkeyStateFactory.createGivingWayState(monkey).handle(monkey, rope);
 
 		Assert.assertEquals(WaitingInQueueState.class, newState.getClass());
 
@@ -69,7 +69,7 @@ public class GivingWayStateTestCase {
 		Monkey monkey = TestUtil.createEastwardMonkey();
 		Rope rope = TestUtil.createEmptyRope().addMonkey(TestUtil.createWestwardMonkey());
 
-		MonkeyState newState = MonkeyStateFactory.createGivingWayState().handle(monkey, rope);
+		MonkeyState newState = MonkeyStateFactory.createGivingWayState(monkey).handle(monkey, rope);
 
 		Assert.assertEquals(WaitingInQueueState.class, newState.getClass());
 

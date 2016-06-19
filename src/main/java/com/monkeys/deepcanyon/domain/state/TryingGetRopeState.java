@@ -5,6 +5,10 @@ import com.monkeys.deepcanyon.domain.Rope;
 
 public class TryingGetRopeState extends BaseMonkeyState {
 
+	public TryingGetRopeState(Monkey monkey, Rope rope) {
+		super(monkey, rope);
+	}
+
 	public MonkeyState handle(Monkey monkey, Rope rope) {
 
 		if (rope.getMonkeys().size() == 0
@@ -24,7 +28,7 @@ public class TryingGetRopeState extends BaseMonkeyState {
 			}
 
 			rope.putMonkey(currentMonkeyPosition, monkey);
-			return MonkeyStateFactory.createCrossingRopeState(currentMonkeyPosition);
+			return MonkeyStateFactory.createCrossingRopeState(this.monkey, currentMonkeyPosition);
 		} else {
 			// Can not get rope, monkeys in opposite direction.
 			return MonkeyStateFactory.createWaitingInQueueState(monkey);

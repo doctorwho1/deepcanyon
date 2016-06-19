@@ -17,7 +17,7 @@ public class CrossingRopeStateTestCase {
 		int firstPosition = rope.getEastwardFirstPosition();
 		rope.putMonkey(firstPosition, monkey);
 
-		MonkeyState monkeyState = MonkeyStateFactory.createCrossingRopeState(firstPosition);
+		MonkeyState monkeyState = MonkeyStateFactory.createCrossingRopeState(monkey, firstPosition);
 
 		for (int i = 0; i < rope.getLength(); i++) {
 			Assert.assertEquals(CrossingRopeState.class, monkeyState.getClass());
@@ -37,7 +37,7 @@ public class CrossingRopeStateTestCase {
 		int firstPosition = rope.getWestwardFirstPosition();
 		rope.putMonkey(firstPosition, monkey);
 
-		MonkeyState monkeyState = MonkeyStateFactory.createCrossingRopeState(firstPosition);
+		MonkeyState monkeyState = MonkeyStateFactory.createCrossingRopeState(monkey, firstPosition);
 
 		for (int i = 0; i < rope.getLength(); i++) {
 			Assert.assertEquals(CrossingRopeState.class, monkeyState.getClass());
@@ -59,7 +59,7 @@ public class CrossingRopeStateTestCase {
 		rope.putMonkey(firstPosition, monkey);
 		rope.putMonkey(firstPosition + 1, frontMonkey);
 
-		MonkeyState monkeyState = MonkeyStateFactory.createCrossingRopeState(firstPosition);
+		MonkeyState monkeyState = MonkeyStateFactory.createCrossingRopeState(monkey, firstPosition);
 
 		Assert.assertEquals(firstPosition, ((CrossingRopeState) monkeyState).getCurrentRopePosition());
 		monkeyState = monkeyState.handle(monkey, rope);
