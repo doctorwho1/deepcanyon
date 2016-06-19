@@ -36,7 +36,7 @@ public class CrossingRopeStateTestCase {
 		MonkeyState monkeyState = MonkeyFactory.createCrossingRopeState(monkey);
 
 		for (int i = 1; i <= rope.getLength(); i++) {
-			Assert.assertEquals(CrossingRopeState.class, monkeyState.getClass());
+			Assert.assertEquals(monkeyState, monkeyState);
 			DateTimeUtils.setCurrentMillisFixed(currentTime.plusSeconds(i).getMillis());
 			monkeyState = monkeyState.handle();
 		}
