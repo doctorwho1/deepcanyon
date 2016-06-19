@@ -1,6 +1,7 @@
 package com.monkeys.deepcanyon.domain.state;
 
 import com.monkeys.deepcanyon.domain.Monkey;
+import com.monkeys.deepcanyon.domain.MonkeyFactory;
 import com.monkeys.deepcanyon.domain.Rope;
 
 public class CrossingRopeState extends BaseMonkeyState {

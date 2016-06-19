@@ -2,8 +2,8 @@ package com.monkeys.deepcanyon.util;
 
 import com.monkeys.deepcanyon.domain.CrossDirection;
 import com.monkeys.deepcanyon.domain.Monkey;
+import com.monkeys.deepcanyon.domain.MonkeyFactory;
 import com.monkeys.deepcanyon.domain.Rope;
-import com.monkeys.deepcanyon.domain.state.MonkeyFactory;
 
 public class TestUtil {
 

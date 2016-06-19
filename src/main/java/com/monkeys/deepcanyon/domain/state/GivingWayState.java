@@ -3,6 +3,7 @@ package com.monkeys.deepcanyon.domain.state;
 import java.util.Collection;
 
 import com.monkeys.deepcanyon.domain.Monkey;
+import com.monkeys.deepcanyon.domain.MonkeyFactory;
 import com.monkeys.deepcanyon.domain.MonkeyRopePosition;
 import com.monkeys.deepcanyon.domain.Rope;
 

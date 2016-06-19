@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.monkeys.deepcanyon.domain.Monkey;
+import com.monkeys.deepcanyon.domain.MonkeyFactory;
 import com.monkeys.deepcanyon.util.TestUtil;
 
 public class GivingWayStateTestCase {

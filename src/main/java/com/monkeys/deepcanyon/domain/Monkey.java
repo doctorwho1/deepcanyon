@@ -1,7 +1,6 @@
 package com.monkeys.deepcanyon.domain;
 
 import com.monkeys.deepcanyon.domain.state.MonkeyState;
-import com.monkeys.deepcanyon.domain.state.MonkeyFactory;
 
 import lombok.Builder;
 

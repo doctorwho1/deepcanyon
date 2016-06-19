@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import com.monkeys.deepcanyon.domain.CrossDirection;
 import com.monkeys.deepcanyon.domain.Monkey;
+import com.monkeys.deepcanyon.domain.MonkeyFactory;
 import com.monkeys.deepcanyon.domain.Rope;
 import com.monkeys.deepcanyon.util.TestUtil;
 

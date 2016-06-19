@@ -1,9 +1,10 @@
-package com.monkeys.deepcanyon.domain.state;
+package com.monkeys.deepcanyon.domain;
 
-import com.monkeys.deepcanyon.domain.CrossDirection;
-import com.monkeys.deepcanyon.domain.Monkey;
-import com.monkeys.deepcanyon.domain.MonkeyQueue;
-import com.monkeys.deepcanyon.domain.Rope;
+import com.monkeys.deepcanyon.domain.state.CrossedRopeState;
+import com.monkeys.deepcanyon.domain.state.CrossingRopeState;
+import com.monkeys.deepcanyon.domain.state.GivingWayState;
+import com.monkeys.deepcanyon.domain.state.TryingGetRopeState;
+import com.monkeys.deepcanyon.domain.state.WaitingInQueueState;
 
 public final class MonkeyFactory {
 
