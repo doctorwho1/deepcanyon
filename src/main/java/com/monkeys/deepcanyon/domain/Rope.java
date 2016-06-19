@@ -3,6 +3,7 @@ package com.monkeys.deepcanyon.domain;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Rope {
 
@@ -11,7 +12,9 @@ public class Rope {
 
 	private final int length;
 
-	private ConcurrentLinkedQueue<Monkey> monkeys = new ConcurrentLinkedQueue<Monkey>();
+	private final ConcurrentLinkedQueue<Monkey> monkeys = new ConcurrentLinkedQueue<Monkey>();
+	
+	private final AtomicReference<Monkey> tryingGetRopeMonkey = new AtomicReference<Monkey>();
 
 	public Rope(int length) {
 		super();
@@ -50,9 +53,16 @@ public class Rope {
 	public int getEastwardFirstPosition() {
 		return eastwardFirstPosition;
 	}
+	
+	
+
+	public AtomicReference<Monkey> getTryingGetRopeMonkey() {
+		return tryingGetRopeMonkey;
+	}
 
 	public void reset() {
 		this.monkeys.clear();
+		this.tryingGetRopeMonkey.set(null);
 	}
 
 }

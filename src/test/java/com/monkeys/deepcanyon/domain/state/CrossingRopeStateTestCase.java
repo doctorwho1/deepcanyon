@@ -4,7 +4,6 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeUtils;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.monkeys.deepcanyon.domain.Monkey;
@@ -12,12 +11,8 @@ import com.monkeys.deepcanyon.domain.MonkeyFactory;
 import com.monkeys.deepcanyon.domain.Rope;
 import com.monkeys.deepcanyon.util.TestUtil;
 
-public class CrossingRopeStateTestCase {
+public class CrossingRopeStateTestCase extends BaseStateTestCase {
 
-	@Before
-	public void setUp() {
-		MonkeyFactory.reset();
-	}
 
 	@After
 	public void tearDown() {

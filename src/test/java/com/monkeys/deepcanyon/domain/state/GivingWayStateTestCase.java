@@ -1,19 +1,13 @@
 package com.monkeys.deepcanyon.domain.state;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.monkeys.deepcanyon.domain.Monkey;
 import com.monkeys.deepcanyon.domain.MonkeyFactory;
 import com.monkeys.deepcanyon.util.TestUtil;
 
-public class GivingWayStateTestCase {
-
-	@Before
-	public void setUp() {
-		MonkeyFactory.reset();
-	}
+public class GivingWayStateTestCase extends BaseStateTestCase {
 
 	@Test
 	public void handleWestwardMonkeyRopeStillContainMonkeysInSameDirection() {

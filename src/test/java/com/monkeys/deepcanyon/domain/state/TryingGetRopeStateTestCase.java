@@ -1,7 +1,6 @@
 package com.monkeys.deepcanyon.domain.state;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.monkeys.deepcanyon.domain.CrossDirection;
@@ -10,12 +9,8 @@ import com.monkeys.deepcanyon.domain.MonkeyFactory;
 import com.monkeys.deepcanyon.domain.Rope;
 import com.monkeys.deepcanyon.util.TestUtil;
 
-public class TryingGetRopeStateTestCase {
+public class TryingGetRopeStateTestCase extends BaseStateTestCase {
 
-	@Before
-	public void setUp() {
-		MonkeyFactory.reset();
-	}
 
 	@Test
 	public void handleEmptyRopeEastWardDirection() {
