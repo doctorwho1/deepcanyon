@@ -13,7 +13,7 @@ public class Rope {
 	private final int length;
 
 	private final ConcurrentLinkedQueue<Monkey> monkeys = new ConcurrentLinkedQueue<Monkey>();
-	
+
 	private final AtomicReference<Monkey> tryingGetRopeMonkey = new AtomicReference<Monkey>();
 
 	public Rope(int length) {
@@ -41,8 +41,12 @@ public class Rope {
 	public void removeMonkey(Monkey monkey) {
 		this.monkeys.remove(monkey);
 	}
-	
-	public Monkey getFirstMonkey(){
+
+	public boolean isEmpty() {
+		return monkeys.isEmpty();
+	}
+
+	public Monkey getFirstMonkey() {
 		return this.monkeys.peek();
 	}
 
@@ -53,8 +57,6 @@ public class Rope {
 	public int getEastwardFirstPosition() {
 		return eastwardFirstPosition;
 	}
-	
-	
 
 	public AtomicReference<Monkey> getTryingGetRopeMonkey() {
 		return tryingGetRopeMonkey;

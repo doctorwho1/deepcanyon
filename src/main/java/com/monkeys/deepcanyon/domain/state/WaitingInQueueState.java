@@ -26,7 +26,8 @@ public class WaitingInQueueState extends BaseMonkeyState {
 				result = MonkeyFactory.createGivingWayState(this.monkey);
 
 			} else {
-				if (this.rope.getTryingGetRopeMonkey().compareAndSet(null, this.monkey)) {
+				if ((this.areSameDirectionMonkeys(monkey, this.rope.getFirstMonkey()) || this.rope.isEmpty())
+						&& this.rope.getTryingGetRopeMonkey().compareAndSet(null, this.monkey)) {
 					result = MonkeyFactory.createTryingGetRopeState(this.monkey);
 					this.monkeyQueue.removeMonkey(monkey);
 				}
