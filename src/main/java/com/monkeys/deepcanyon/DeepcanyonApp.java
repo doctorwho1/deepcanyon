@@ -4,9 +4,10 @@ import java.util.Random;
 
 import com.monkeys.deepcanyon.domain.CrossDirection;
 import com.monkeys.deepcanyon.domain.Monkey;
+import com.monkeys.deepcanyon.domain.MonkeyFactory;
 
 public class DeepcanyonApp {
-	
+
 	private static final int MAX_NUMBER_INITIAL_MONKEYS = 4;
 	private static final int MAX_INTERVAL_ARRIVAL_MONKEYS = 8;
 
@@ -47,7 +48,7 @@ public class DeepcanyonApp {
 	}
 
 	private Monkey generateRandomMonkey() {
-		return new Monkey(CrossDirection.values()[random.nextInt(CrossDirection.values().length)]);
+		return MonkeyFactory.createMonkey(CrossDirection.values()[random.nextInt(CrossDirection.values().length)]);
 	}
 
 }

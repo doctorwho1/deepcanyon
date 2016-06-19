@@ -26,8 +26,8 @@ public class Monkey {
 
 		this.crossDirection = crossDirection;
 		this.state = MonkeyFactory.createWaitingInQueueState(this);
-		
-		log.info("Monkey arrived: "+this);
+
+		log.info("Monkey arrived: " + this);
 
 	}
 
@@ -50,7 +50,30 @@ public class Monkey {
 	public String toString() {
 		return "Monkey [monkeyName=" + monkeyName + ", crossDirection=" + crossDirection + ", state=" + state + "]";
 	}
-	
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((monkeyName == null) ? 0 : monkeyName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Monkey other = (Monkey) obj;
+		if (monkeyName == null) {
+			if (other.monkeyName != null)
+				return false;
+		} else if (!monkeyName.equals(other.monkeyName))
+			return false;
+		return true;
+	}
 
 }

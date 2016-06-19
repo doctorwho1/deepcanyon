@@ -22,6 +22,20 @@ public final class MonkeyFactory {
 		MonkeyFactory.westwardQueue.clear();
 	}
 
+	public static final Monkey createMonkey(CrossDirection crossDirection) {
+		Monkey monkey = new Monkey(crossDirection);
+		switch (monkey.getCrossDirection()) {
+		case EASTWARD:
+			MonkeyFactory.eastwardQueue.addMonkey(monkey);
+			break;
+		case WESTWARD:
+			MonkeyFactory.westwardQueue.addMonkey(monkey);
+			break;
+		}
+
+		return monkey;
+	}
+
 	public static final WaitingInQueueState createWaitingInQueueState(Monkey monkey) {
 		switch (monkey.getCrossDirection()) {
 		case EASTWARD:
@@ -62,12 +76,10 @@ public final class MonkeyFactory {
 	}
 
 	private static final WaitingInQueueState createWaitingInEastwardQueueState(Monkey monkey) {
-		MonkeyFactory.eastwardQueue.addMonkey(monkey);
 		return new WaitingInQueueState(monkey, MonkeyFactory.getRopeInstance(), MonkeyFactory.eastwardQueue);
 	}
 
 	private static final WaitingInQueueState createWaitingInWestwardQueueState(Monkey monkey) {
-		MonkeyFactory.westwardQueue.addMonkey(monkey);
 		return new WaitingInQueueState(monkey, MonkeyFactory.getRopeInstance(), MonkeyFactory.westwardQueue);
 	}
 
