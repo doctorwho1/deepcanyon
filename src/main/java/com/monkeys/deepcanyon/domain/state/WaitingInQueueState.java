@@ -26,7 +26,10 @@ public class WaitingInQueueState extends BaseMonkeyState {
 		} else {
 			return MonkeyFactory.createTryingGetRopeState(this.monkey);
 		}
+	}
 
+	public MonkeyQueue getMonkeyQueue() {
+		return monkeyQueue;
 	}
 
 }
