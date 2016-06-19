@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.monkeys.deepcanyon.domain.CrossDirection;
 import com.monkeys.deepcanyon.domain.Monkey;
 import com.monkeys.deepcanyon.domain.MonkeyFactory;
+import com.monkeys.deepcanyon.domain.Rope;
 import com.monkeys.deepcanyon.util.TestUtil;
 
 public class WaitingInQueueStateTestCase extends BaseStateTestCase {
@@ -29,25 +30,36 @@ public class WaitingInQueueStateTestCase extends BaseStateTestCase {
 		Assert.assertEquals(TryingGetRopeState.class, newState.getClass());
 	}
 
+	
+	
 	@Test
-	public void handleEastwardMonkeyFullRopeOfMonkeysInSameDirection() {
+	public void eastwardMonkeyRopeWithMonkeyInSameDirectionAndMonkeyWaitingInOppositeDirection() {
 		Monkey monkey = new Monkey(CrossDirection.EASTWARD);
-		TestUtil.createFullRopeOfEastwardMonkeys();
+		Rope rope = TestUtil.createEmptyRope();
+		rope.addMonkey(Monkey.builder().crossDirection(CrossDirection.EASTWARD).build());
+		MonkeyFactory.getWestwardqueue().addMonkey(Monkey.builder().crossDirection(CrossDirection.WESTWARD).build());
+		
 		MonkeyState newState = MonkeyFactory.createWaitingInQueueState(monkey).handle();
+		
+
+		Assert.assertEquals(GivingWayState.class, newState.getClass());
+
+	}
+	
+	@Test
+	public void westwardMonkeyRopeWithMonkeyInSameDirectionAndMonkeyWaitingInOppositeDirection() {
+		Monkey monkey = new Monkey(CrossDirection.WESTWARD);
+		Rope rope = TestUtil.createEmptyRope();
+		rope.addMonkey(Monkey.builder().crossDirection(CrossDirection.WESTWARD).build());
+		MonkeyFactory.getWestwardqueue().addMonkey(Monkey.builder().crossDirection(CrossDirection.EASTWARD).build());
+		
+		MonkeyState newState = MonkeyFactory.createWaitingInQueueState(monkey).handle();
+		
 
 		Assert.assertEquals(GivingWayState.class, newState.getClass());
 
 	}
 
-	@Test
-	public void handleEastwardMonkeyFullRopeOfMonkeysInOppositeDirection() {
-
-		Monkey monkey = new Monkey(CrossDirection.EASTWARD);
-		TestUtil.createFullRopeOfWestwardMonkeys();
-		MonkeyState newState = MonkeyFactory.createWaitingInQueueState(monkey).handle();
-
-		Assert.assertEquals(WaitingInQueueState.class, newState.getClass());
-	}
 
 	@Test
 	public void monkeyCanNotChangeStateBecauseIsNotFirstMonkeyInQueue() {

@@ -1,7 +1,6 @@
 package com.monkeys.deepcanyon;
 
 import com.monkeys.deepcanyon.domain.Monkey;
-import com.monkeys.deepcanyon.domain.state.BaseMonkeyState;
 import com.monkeys.deepcanyon.domain.state.CrossedRopeState;
 import com.monkeys.deepcanyon.domain.state.MonkeyState;
 

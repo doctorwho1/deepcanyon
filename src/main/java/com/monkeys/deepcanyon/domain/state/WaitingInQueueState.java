@@ -20,11 +20,10 @@ public class WaitingInQueueState extends BaseMonkeyState {
 
 		if (this.isFirtsMonkeyOnQueue()) {
 
-			if (this.isRopeFull(rope)) {
-				Monkey firstMonkey = this.rope.getFirstMonkey();
-				if (this.areSameDirectionMonkeys(monkey, firstMonkey)) {
-					result = MonkeyFactory.createGivingWayState(this.monkey);
-				}
+			Monkey firstMonkey = this.rope.getFirstMonkey();
+			if (this.existsMonkeysWaitingInOppositeQueue() &&  this.areSameDirectionMonkeys(monkey, firstMonkey)) {
+
+				result = MonkeyFactory.createGivingWayState(this.monkey);
 
 			} else {
 				if (this.rope.getTryingGetRopeMonkey().compareAndSet(null, this.monkey)) {
@@ -43,6 +42,14 @@ public class WaitingInQueueState extends BaseMonkeyState {
 
 	private boolean isFirtsMonkeyOnQueue() {
 		return this.monkeyQueue.peekMonkey().equals(this.monkey);
+	}
+
+	private boolean existsMonkeysWaitingInOppositeQueue() {
+		if (this.monkeyQueue == MonkeyFactory.getEastwardqueue()) {
+			return MonkeyFactory.getWestwardqueue().peekMonkey() != null;
+		} else {
+			return MonkeyFactory.getEastwardqueue().peekMonkey() != null;
+		}
 	}
 
 }

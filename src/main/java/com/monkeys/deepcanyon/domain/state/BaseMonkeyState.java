@@ -3,9 +3,6 @@ package com.monkeys.deepcanyon.domain.state;
 import com.monkeys.deepcanyon.domain.Monkey;
 import com.monkeys.deepcanyon.domain.Rope;
 
-import lombok.extern.slf4j.Slf4j;
-
-
 public abstract class BaseMonkeyState implements MonkeyState {
 
 	protected Monkey monkey;
@@ -27,11 +24,11 @@ public abstract class BaseMonkeyState implements MonkeyState {
 	}
 
 	protected boolean areSameDirectionMonkeys(Monkey firstMonkey, Monkey secondMonkey) {
-		return firstMonkey.getCrossDirection().equals(secondMonkey.getCrossDirection());
-	}
-
-	public boolean isRopeFull(Rope rope) {
-		return rope.getLength() == rope.getMonkeys().size();
+		if (secondMonkey == null) {
+			return false;
+		} else {
+			return firstMonkey.getCrossDirection().equals(secondMonkey.getCrossDirection());
+		}
 	}
 
 	@Override
