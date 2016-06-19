@@ -63,10 +63,12 @@ public final class MonkeyFactory {
 	}
 
 	private static final WaitingInQueueState createWaitingInEastwardQueueState(Monkey monkey) {
+		MonkeyFactory.eastwardQueue.addMonkey(monkey);
 		return new WaitingInQueueState(monkey, MonkeyFactory.getRopeInstance(), MonkeyFactory.eastwardQueue);
 	}
 
 	private static final WaitingInQueueState createWaitingInWestwardQueueState(Monkey monkey) {
+		MonkeyFactory.westwardQueue.addMonkey(monkey);
 		return new WaitingInQueueState(monkey, MonkeyFactory.getRopeInstance(), MonkeyFactory.westwardQueue);
 	}
 

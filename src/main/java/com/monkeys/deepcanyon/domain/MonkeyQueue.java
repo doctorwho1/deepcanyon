@@ -39,6 +39,10 @@ public class MonkeyQueue {
 		return this.delegate.poll();
 	}
 	
+	public boolean removeMonkey(Monkey monkey){
+		return this.delegate.remove(monkey);
+	}
+	
 	public void clear() {
 		this.delegate.clear();
 	}

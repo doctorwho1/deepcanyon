@@ -49,22 +49,22 @@ public class WaitingInQueueStateTestCase {
 		Monkey firtMonkey = new Monkey(CrossDirection.EASTWARD);
 		Monkey secondMonkey = new Monkey(CrossDirection.EASTWARD);
 		
+		
+		
 		MonkeyFactory.getEastwardqueue().addMonkey(firtMonkey);
 		MonkeyFactory.getEastwardqueue().addMonkey(secondMonkey);
-		
-		MonkeyState secondMonkeyState = MonkeyFactory.createWaitingInQueueState(secondMonkey);
-		
-		Assert.assertEquals(WaitingInQueueState.class, secondMonkeyState.getClass());
+				
+		Assert.assertEquals(WaitingInQueueState.class, firtMonkey.getState().getClass());
 		
 		// State not change.
-		Assert.assertEquals(secondMonkeyState, secondMonkeyState.handle());
+		Assert.assertEquals(secondMonkey.getState(), secondMonkey.getState().handle());
 		
 		// Now first monkey advance.
-		MonkeyState firstMonkeyState = MonkeyFactory.createWaitingInQueueState(secondMonkey);
-		Assert.assertEquals(TryingGetRopeState.class, firstMonkeyState.handle());
+		
+		Assert.assertEquals(TryingGetRopeState.class, firtMonkey.getState().handle().getClass());
 		
 		// Now second monkey can advance
-		Assert.assertEquals(TryingGetRopeState.class, secondMonkeyState.handle());
+		Assert.assertEquals(TryingGetRopeState.class, secondMonkey.getState().handle().getClass());
 		
 		
 		
