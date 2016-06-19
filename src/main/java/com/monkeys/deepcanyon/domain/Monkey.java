@@ -1,10 +1,14 @@
 package com.monkeys.deepcanyon.domain;
 
+import java.util.UUID;
+
 import com.monkeys.deepcanyon.domain.state.MonkeyState;
 
 import lombok.Builder;
 
 public class Monkey {
+
+	private String monkeyName = UUID.randomUUID().toString();
 
 	private CrossDirection crossDirection;
 
@@ -37,5 +41,12 @@ public class Monkey {
 	public MonkeyState getState() {
 		return state;
 	}
+
+	@Override
+	public String toString() {
+		return "Monkey [monkeyName=" + monkeyName + ", crossDirection=" + crossDirection + ", state=" + state + "]";
+	}
+	
+	
 
 }

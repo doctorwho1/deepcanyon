@@ -10,8 +10,8 @@ public class CrossedRopeState extends BaseMonkeyState {
 	}
 
 	public MonkeyState handle() {
-		// TODO destruir el mono.
-		return null;
+
+		return this;
 	}
 
 }
